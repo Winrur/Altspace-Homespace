@@ -1,73 +1,72 @@
-
-
 <!DOCTYPE html>
+<html><head>
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="https://sdk.altvr.com/libs/altspace.js/2.9.0/altspace.min.js"></script>
+<script>
 
-<html>
+// an example custom component, that will change the color when clicked
+AFRAME.registerComponent("inventory-item", {
+    schema: {},
+    init: function(){
+        var itemPosition;
+        var el = this.el;
+        let rotateItem = document.getElementById("spin-item");
+        let scaleItemDown = document.getElementById("scale-item-down");
+        let scaleItemUp = document.getElementById("scale-item-up");
+        el.appendChild(rotateItem);
+        el.appendChild(scaleItemDown);
+        el.appendChild(scaleItemUp);
+        function scaleUpObject() {
+            itemPosition = el.getAttribute("position");
+            el.object3D.position.set(itemPosition.x + Math.floor(Math.random() * 10),
+            itemPosition.y, 
+            itemPosition.z + Math.floor(Math.random() * 10));
+            el.emit("scale-up");
+            console.log("Test");
+        }
+        this.el.addEventListener("click", function(){
+            el.emit("scale-down");
+            setTimeout(scaleUpObject, 3000);
+        });
+    }
+});
 
-    <head>
+</script>
+</head>
+<body>
+<!-- Animations that will be attached to elements with the class "item" -->
+<a-animation id="spin-item"
+               attribute="rotation"
+               dur="10000"
+               easing="linear"
+               to="0 360 0"
+               repeat="indefinite"></a-animation>
 
-        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<a-animation id="scale-item-down"
+               attribute="scale"
+               dur="700"
+               easing="ease-out"
+               to="0 0 0"
+               begin="scale-down"></a-animation>
 
-        <script src="https://cdn.rawgit.com/mrdoob/three.js/r84/build/three.js"></script>
+<a-animation id="scale-item-up"
+               attribute="scale"
+               dur="700"
+               easing="ease-out"
+               to="1 1 1"
+               begin="scale-up"></a-animation>
+<!-- Set up the scene -->
+<a-scene altspace="fullspace: true">
+    <a-assets>
+        <a-asset-item id="key-obj" src="https://cdn.rawgit.com/Winrur/Altspace-Homespace/7cb4b9e8/models/key.obj"></a-asset-item>
+        <a-asset-item id="key-mtl" src="https://cdn.rawgit.com/Winrur/Altspace-Homespace/7cb4b9e8/models/key.mtl"></a-asset-item>
+    </a-assets>
+    <!-- The Red Box -->
+    <a-box class="item" color="red" position="0 1 0" inventory-item></a-box>
+    <!-- Items -->
+    <a-entity class="item" id="key" obj-model="obj: #key-obj; mtl: #key-mtl" position="0 3 0"></a-entity>
+    <!-- Spawn Points -->
+    <a-box class="spawn-point" color="black" position=""
+</a-scene>
 
-        <script src="https://sdk.altvr.com/libs/altspace.js/2.9.0/altspace.min.js"></script>
-
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-
-        <script>
-
-            // Initialize Firebase
-
-            var config = {
-
-            apiKey: "AIzaSyBLgpzBCUGvEj_Mp04itbrTyvYFC8EtFUg",
-
-            authDomain: "tarotapp-f5b54.firebaseapp.com",
-
-            databaseURL: "https://tarotapp-f5b54.firebaseio.com",
-
-            projectId: "tarotapp-f5b54",
-
-            storageBucket: "tarotapp-f5b54.appspot.com",
-
-            messagingSenderId: "26210660102"
-
-        };
-
-        firebase.initializeApp(config);
-
-            var firebaseRef = firebase.database().ref();
-
-        </script>   
-
-    </head>
-
-    <body>
-
-        <a-scene altspace="fullspace: true">
-
-            <a-assets>
-
-           <!-- <img id="wood" src="/images/wood.jpg"> 
-
-                <img id="back1" src="/images/back1.png">
-
-                <img id="back2" src="/images/back2.png">
-
-                <img id="back3" src="/images/back3.png"> -->
-
-                <a-asset-item id="hex-obj" src="hex.obj"></a-asset-item>
-
-                <a-asset-item id="hex-mtl" src="hex.mtl"></a-asset-item>
-
-            </a-assets>
-
-            <a-box color="red" position="-1 0.2 -5.4" scale="6.5 0 9.5"></a-box>
-
-            <!-- <a-entity obj-model="obj: #hex-obj; mtl: #hex-mtl"></a-entity> -->
-
-        </a-scene>
-
-    </body>
-
-</html>
+</body></html>
