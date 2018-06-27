@@ -8,6 +8,7 @@
 AFRAME.registerComponent("inventory-item", {
     schema: {},
     init: function(){
+        var itemPosition;
         var el = this.el;
         let rotateItem = document.getElementById("spin-item");
         let scaleItemDown = document.getElementById("scale-item-down");
@@ -16,7 +17,7 @@ AFRAME.registerComponent("inventory-item", {
         el.appendChild(scaleItemDown);
         el.appendChild(scaleItemUp);
         function scaleUpObject() {
-            var itemPosition = el.getAttribute("position");
+            itemPosition = el.getAttribute("position");
             el.object3D.position.set(itemPosition.x + 1, itemPosition.y + 1, itemPosition.z + 1);
             el.emit("scale-up");
             console.log("Test");
