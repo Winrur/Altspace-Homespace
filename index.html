@@ -59,12 +59,11 @@ AFRAME.registerComponent("inventory-item", {
 <a-scene altspace="fullspace: true">
     <a-assets>
         <a-asset-item id="key-obj" src="https://cdn.rawgit.com/Winrur/Altspace-Homespace/7cb4b9e8/models/key.obj"></a-asset-item>
-        <a-asset-item id="key-mtl" src="https://cdn.rawgit.com/Winrur/Altspace-Homespace/7cb4b9e8/models/key.mtl"></a-asset-item>
     </a-assets>
     <!-- The Red Box -->
     <a-box class="item" color="red" position="0 1 0" inventory-item></a-box>
     <!-- Items -->
-    <a-entity class="item" id="key" obj-model="obj: #key-obj; mtl: #key-mtl" color="yellow" position="0 3 0" scale="0.01 0.01 0.01"></a-entity>
+    <a-entity class="item" id="key" obj-model="obj: #key-obj" material="color: yellow" position="0 3 0" scale="0.01 0.01 0.01" inventory-item></a-entity>
     <!-- Spawn Points -->
     <a-box class="spawn-point" color="black" position=""
 </a-scene>
