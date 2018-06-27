@@ -18,7 +18,7 @@ AFRAME.registerComponent("inventory-item", {
         el.appendChild(scaleItemUp);
         function scaleUpObject() {
             itemPosition = el.getAttribute("position");
-            el.object3D.position.set(itemPosition.x + 1, itemPosition.y + 1, itemPosition.z + 1);
+            el.object3D.position.set(itemPosition.x++, itemPosition.y++, itemPosition.z++);
             el.emit("scale-up");
             console.log("Test");
         }
