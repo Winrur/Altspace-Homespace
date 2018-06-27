@@ -17,6 +17,7 @@ AFRAME.registerComponent("inventory-item", {
         el.appendChild(scaleUpItem);
         function scaleUpObject() {
             el.emit("scale-up");
+            console.log("Test");
         }
         this.el.addEventListener("click", function(){
             el.emit("scale-down");
