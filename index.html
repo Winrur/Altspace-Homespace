@@ -10,11 +10,17 @@ AFRAME.registerComponent("inventory-item", {
     init: function(){
         var el = this.el;
         let rotateItem = document.getElementById("spin-item");
-        let scaleItem = document.getElementById("scale-item");
+        let scaleDownItem = document.getElementById("scale-down-item");
+        let scaleUpItem = document.getElementById("scale-up-item");
         el.appendChild(rotateItem);
-        el.appendChild(scaleItem);
+        el.appendChild(scaleDownItem);
+        el.appendChild(scaleUpItem);
+        function scaleUpObject() {
+            el.emit("scale-up");
+        }
         this.el.addEventListener("click", function(){
             el.emit("scale-down");
+            setTimeout(scaleUpObject, 3000);
         });
     }
 });
@@ -30,12 +36,19 @@ AFRAME.registerComponent("inventory-item", {
                to="0 360 0"
                repeat="indefinite"></a-animation>
 
-<a-animation id="scale-item"
+<a-animation id="scale-item-down"
                attribute="scale"
                dur="700"
                easing="ease-out"
                to="0 0 0"
                begin="scale-down"></a-animation>
+
+<a-animation id="scale-item-up"
+               attribute="scale"
+               dur="700"
+               easing="ease-out"
+               to="1 1 1"
+               begin="scale-up"></a-animation>
 <!-- Set up the scene -->
 <a-scene altspace="fullspace: true">
     <a-box class="item" color="red" position='0 1 0' inventory-item></a-box>
