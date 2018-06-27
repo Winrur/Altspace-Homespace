@@ -16,6 +16,8 @@ AFRAME.registerComponent("inventory-item", {
         el.appendChild(scaleItemDown);
         el.appendChild(scaleItemUp);
         function scaleUpObject() {
+            var itemPosition = el.getAttribute("position");
+            el.object3D.position.set(itemPosition.x + 1, itemPosition.y + 1, itemPosition.z + 1);
             el.emit("scale-up");
             console.log("Test");
         }
@@ -52,7 +54,10 @@ AFRAME.registerComponent("inventory-item", {
                begin="scale-up"></a-animation>
 <!-- Set up the scene -->
 <a-scene altspace="fullspace: true">
-    <a-box class="item" color="red" position='0 1 0' inventory-item></a-box>
+    <!-- The Red Box -->
+    <a-box class="item" color="red" position="0 1 0" inventory-item></a-box>
+    <!-- Spawn Points -->
+    <a-box class="spawn-point" color="black" position=""
 </a-scene>
 
 </body></html>
