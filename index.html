@@ -13,11 +13,6 @@ AFRAME.registerComponent("inventory-item", {
         let scaleItem = document.getElementById("scale-item");
         el.appendChild(rotateItem);
         el.appendChild(scaleItem);
-        //let items = document.getElementsByClassName("item");
-        //for (var i = 0; i < items.length; i++) {
-            //items[i].appendChild(rotateItem);
-            //items[i].appendChild(scaleItem);
-        //}
         this.el.addEventListener("click", function(){
             el.emit("scale-down");
         });
@@ -37,7 +32,7 @@ AFRAME.registerComponent("inventory-item", {
 
 <a-animation id="scale-item"
                attribute="scale"
-               dur="3500"
+               dur="2000"
                easing="linear"
                to="0 0 0"
                begin="scale-down"></a-animation>
