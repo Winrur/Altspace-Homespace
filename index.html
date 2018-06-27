@@ -10,11 +10,11 @@ AFRAME.registerComponent("inventory-item", {
     init: function(){
         var el = this.el;
         let rotateItem = document.getElementById("spin-item");
-        let scaleDownItem = document.getElementById("scale-down-item");
-        let scaleUpItem = document.getElementById("scale-up-item");
+        let scaleItemDown = document.getElementById("scale-item-down");
+        let scaleItemUp = document.getElementById("scale-item-up");
         el.appendChild(rotateItem);
-        el.appendChild(scaleDownItem);
-        el.appendChild(scaleUpItem);
+        el.appendChild(scaleItemDown);
+        el.appendChild(scaleItemUp);
         function scaleUpObject() {
             el.emit("scale-up");
             console.log("Test");
