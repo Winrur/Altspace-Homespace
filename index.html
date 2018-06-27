@@ -10,7 +10,7 @@ AFRAME.registerComponent("inventory-item", {
     init: function(){
         var self = this;
         let element = document.getElementById("spin-item");
-        let items = querySelectorAll(".item");
+        let items = document.querySelectorAll(".item");
         items.appendChild(element);
         //this.el.addEventListener("click", function(){
 
