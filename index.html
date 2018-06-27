@@ -8,14 +8,16 @@
 AFRAME.registerComponent("inventory-item", {
     schema: {},
     init: function(){
-        var self = this;
+        var el = this.el;
         let rotateItem = document.getElementById("spin-item");
         let scaleItem = document.getElementById("scale-item");
-        let items = document.getElementsByClassName("item");
-        for (var i = 0; i < items.length; i++) {
-            items[i].appendChild(rotateItem);
-            items[i].appendChild(scaleItem);
-        }
+        el.appendChild(rotateItem);
+        el.appendChild(scaleItem);
+        //let items = document.getElementsByClassName("item");
+        //for (var i = 0; i < items.length; i++) {
+            //items[i].appendChild(rotateItem);
+            //items[i].appendChild(scaleItem);
+        //}
         this.el.addEventListener("click", function(){
             el.emit("scale-down");
         });
