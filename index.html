@@ -9,32 +9,39 @@ AFRAME.registerComponent("inventory-item", {
     schema: {},
     init: function(){
         var self = this;
-        let element = document.getElementById("spin-item");
+        let rotateItem = document.getElementById("spin-item");
+        let scaleItem = document.getElementById("scale-item");
         let items = document.getElementsByClassName("item");
         for (var i = 0; i < items.length; i++) {
-            //items[i].replace(".item", "");
-            console.log(items[i]);
-            items[i].appendChild(element);
+            items[i].appendChild(rotateItem);
+            items[i].appendChild(scaleItem);
         }
-        //this.el.addEventListener("click", function(){
-
-            //self.el.setAttribute('color', 'rgb('+rgb.join(',')+')');
-        //});
+        this.el.addEventListener("click", function(){
+            el.emit("scale-down");
+        });
     }
 });
 
 </script>
 </head>
 <body>
+<!-- Animations that will be attached to elements with the class "item" -->
 <a-animation id="spin-item"
                attribute="rotation"
                dur="10000"
                easing="linear"
                to="0 360 0"
                repeat="indefinite"></a-animation>
-<!-- set up the scene -->
+
+<a-animation id="scale-item"
+               attribute="scale"
+               dur="3500"
+               easing="linear"
+               to="0 0 0"
+               begin="scale-down"></a-animation>
+<!-- Set up the scene -->
 <a-scene altspace="fullspace: true">
-    <a-box class="item" position='0 1 0' inventory-item></a-box>
+    <a-box class="item" color="red" position='0 1 0' inventory-item></a-box>
 </a-scene>
 
 </body></html>
