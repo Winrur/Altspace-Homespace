@@ -9,9 +9,9 @@ AFRAME.registerComponent("inventory-item", {
     schema: {},
     init: function(){
         var self = this;
-        console.log(this.id);
-        //let element = document.getElementById("spin-item");
-        //this.appendChild(element);
+        let element = document.getElementById("spin-item");
+        let items = querySelectorAll(".item");
+        items.appendChild(element);
         //this.el.addEventListener("click", function(){
 
             //self.el.setAttribute('color', 'rgb('+rgb.join(',')+')');
@@ -29,7 +29,7 @@ AFRAME.registerComponent("inventory-item", {
                repeat="indefinite"></a-animation>
 <!-- set up the scene -->
 <a-scene altspace="fullspace: true">
-    <a-box position='0 1 0' inventory-item></a-box>
+    <a-box class="item" position='0 1 0' inventory-item></a-box>
 </a-scene>
 
 </body></html>
